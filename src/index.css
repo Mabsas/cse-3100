@@ -1,3 +1,13 @@
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Clean and modern font */
+  background-color: #f5f7fa; /* Light background for a soothing effect */
+  color: #333; /* Dark text for good readability */
+}
+
+/* Layout Styles */
 .layout {
   display: flex;
   flex-direction: column;
@@ -6,27 +16,61 @@
 
 header {
   padding: 1em;
+  background-color: #4a90e2; /* Soft blue header */
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 main {
   flex: 1;
   padding: 1em;
 }
+
 footer {
   padding: 1em;
   text-align: center;
+  background-color: #4a90e2; /* Matching footer background */
+  color: #fff;
+  font-size: 0.9em;
+  font-style: italic;
 }
 
+/* Cat Card Styles */
 .cat-card {
   border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners for elegance */
   text-align: center;
   height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background: linear-gradient(135deg, #ffffff, #e3e7ed); /* Soft gradient background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Depth effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.cat-card:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Emphasized shadow on hover */
+  cursor: pointer; /* Indicates interactivity */
 }
 
 .cat-info {
   background: #f8f9fa;
   border-radius: 4px;
+  padding: 1em;
+  font-size: 1em;
+  color: #555; /* Neutral text color */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle inset effect */
+  font-weight: 500; /* Medium font weight for emphasis */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cat-card {
+    height: auto; /* Adjust height for smaller screens */
+  }
 }

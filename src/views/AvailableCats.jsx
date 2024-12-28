@@ -26,7 +26,6 @@ export default function AvailableCats() {
   const [selectedBreed, setSelectedBreed] = useState("All");
 
   useEffect(() => {
-    // Fetch cat images from API and add to cats list
     const fetchCatImages = async () => {
       try {
         const responses = await Promise.all(
@@ -51,7 +50,6 @@ export default function AvailableCats() {
     fetchCatImages();
   }, []);
 
-  // Filter cats based on breed and search term
   const handleFilter = () => {
     let filtered = cats;
 
@@ -82,6 +80,7 @@ export default function AvailableCats() {
         className="filters mb-4"
         style={{
           display: "flex",
+          flexWrap: "wrap",
           gap: "10px",
           justifyContent: "center",
           marginBottom: "20px",
@@ -97,6 +96,7 @@ export default function AvailableCats() {
             border: "1px solid #ccc",
             borderRadius: "5px",
             width: "200px",
+            flexShrink: 0,
           }}
         />
         <select
@@ -107,6 +107,7 @@ export default function AvailableCats() {
             border: "1px solid #ccc",
             borderRadius: "5px",
             width: "150px",
+            flexShrink: 0,
           }}
         >
           {breeds.map((breed, index) => (
@@ -124,6 +125,7 @@ export default function AvailableCats() {
             border: "none",
             borderRadius: "5px",
             cursor: "pointer",
+            flexShrink: 0,
           }}
         >
           Search
@@ -131,60 +133,40 @@ export default function AvailableCats() {
       </div>
 
       {/* Cats List */}
-      <div className="mt-2 row g-4 cats-container" id="cats-container">
+      <div
+        className="row g-4"
+        id="cats-container"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gap: "20px",
+        }}
+      >
         {filteredCats.map((cat, i) => (
           <div
             key={i}
-            className="col-md-4"
             style={{
-              marginBottom: "20px",
-              display: "flex",
-              justifyContent: "center",
+              border: "1px solid #ddd",
+              borderRadius: "8px",
+              boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
+              padding: "15px",
+              textAlign: "center",
             }}
           >
-            <div
-              className="cat-card"
+            <img
+              src={cat.image}
+              alt={cat.name}
               style={{
-                width: "300px",
-                padding: "15px",
-                border: "1px solid #ddd",
+                width: "100%",
+                height: "200px",
+                objectFit: "cover",
                 borderRadius: "8px",
-                textAlign: "center",
-                boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
+                marginBottom: "10px",
               }}
-            >
-              <img
-                src={cat.image}
-                alt={cat.name}
-                className="img-fluid mb-2"
-                style={{
-                  borderRadius: "8px",
-                  height: "200px",
-                  width: "100%",
-                  objectFit: "cover",
-                }}
-              />
-              <div className="cat-info">
-                <h3
-                  className="h5 mb-1"
-                  style={{ fontWeight: "bold", color: "#333" }}
-                >
-                  {cat.name}
-                </h3>
-                <p
-                  className="mb-0"
-                  style={{ fontSize: "14px", color: "#555" }}
-                >
-                  Age: {cat.age}
-                </p>
-                <p
-                  className="mb-0"
-                  style={{ fontSize: "14px", color: "#555" }}
-                >
-                  Breed: {cat.breed}
-                </p>
-              </div>
-            </div>
+            />
+            <h3 style={{ fontWeight: "bold", color: "#333" }}>{cat.name}</h3>
+            <p style={{ fontSize: "14px", color: "#555" }}>Age: {cat.age}</p>
+            <p style={{ fontSize: "14px", color: "#555" }}>Breed: {cat.breed}</p>
           </div>
         ))}
       </div>
